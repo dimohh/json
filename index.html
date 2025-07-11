@@ -1,45 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Interactive JSON Viewer</title>
   <style>
     body {
       font-family: monospace;
+      background: #ffffff;
       padding: 20px;
-      background: #fff;
     }
-    .controls label {
+    h2 {
+      font-family: sans-serif;
+    }
+    .checkbox-group label {
       display: block;
       margin-bottom: 8px;
     }
     pre {
-      background: #f5f5f5;
+      background-color: #f5f5f5;
       padding: 16px;
-      border-radius: 6px;
-      white-space: pre-wrap;
+      border-radius: 8px;
+      overflow-x: auto;
     }
   </style>
 </head>
 <body>
-  <h3>📦 Toggle JSON Sections</h3>
-  <div class="controls">
-    <label><input type="checkbox" id="full" checked> Include FULL</label>
-    <label><input type="checkbox" id="pt" checked> Include PT</label>
-    <label><input type="checkbox" id="telco" checked> Include TELCO</label>
+  <h2>📦 Toggle JSON Sections</h2>
+
+  <div class="checkbox-group">
+    <label><input type="checkbox" id="FR" checked> Include FR</label>
+    <label><input type="checkbox" id="PT" checked> Include PT</label>
+    <label><input type="checkbox" id="TS" checked> Include TS</label>
+    <label><input type="checkbox" id="SB" checked> Include SB</label>
+    <label><input type="checkbox" id="CHA" checked> Include CHA</label>
   </div>
 
-  <pre id="json-output"></pre>
+  <pre id="output"></pre>
 
   <script>
-    const baseJson = {
+    const base = {
       requestId: "X123-AB45",
-      productIds: ["FULL", "PT", "TELCO"],
+      productIds: [],
       response: {}
     };
 
     const sections = {
-      FULL: {
+      FR: {
         data: [
           {
             recordID: "123456789",
@@ -68,8 +74,45 @@
             loanInfoRepaymentHistory: "00000",
             loanInfoCloseDate: "2023-12-28",
             contributorId: "12d3ae45-678d-9ae1-2345-6e789e3xx000"
+            "loanInfoRepaymentFullHistory": [
+              {
+                "dueDate": "15-03-2024",
+                "paymentDate": "15-03-2024",
+                "paymentAmount": 1300.00
+              },
+              {
+                "dueDate": "15-04-2024",
+                "paymentDate": "15-04-2024",
+                "paymentAmount": 1250.50
+              },
+              {
+                "dueDate": "15-05-2024",
+                "paymentDate": "15-05-2024",
+                "paymentAmount": 1275.75
+              },
+              {
+                "dueDate": "15-06-2024",
+                "paymentDate": "15-06-2024",
+                "paymentAmount": 1320.25
+              },
+              {
+                "dueDate": "15-07-2024",
+                "paymentDate": "15-07-2024",
+                "paymentAmount": 1295.00
+              }
+            ]
           }
-        ]
+        ],
+        summary: {
+          numApp: 1,
+          numAcc: 1,
+          wasDpd30Ever: 1,
+          wasDpd90Ever: 0,
+          wasDpd30Last3Months: 0,
+          wasDpd90Last3Months: 0,
+          wasDpd30LastYear: 0,
+          wasDpd90LastYear: 0
+        }
       },
       PT: {
         transactionCount: 33,
@@ -80,7 +123,7 @@
         stdDev: 2737.87,
         refDates: []
       },
-      TELCO: {
+      TS: {
         transactionId: "f2279c3df6eb4368a8ec31c0ca561c8a",
         code: "0000",
         result: "ok",
@@ -90,35 +133,88 @@
             ["band", 1]
           ]
         }
+      },
+      SB: {
+        msisdn: "63XXXXXXXXXX",
+        numApp: 1,
+        numAcc: 1,
+        wasDpd30Ever: 1,
+        wasDpd90Ever: 0,
+        wasDpd30Last3Months: 0,
+        wasDpd90Last3Months: 0,
+        wasDpd30LastYear: 0,
+        wasDpd90LastYear: 0
+      },
+      CHA: {
+        document: null,
+        phone: {
+          wasAgr: 1,
+          dpd30Ntb: 0,
+          dpd90Ntb: 0,
+          mmDocByPhone: null,
+          mmAccByPhone: null,
+          mmBdByPhone: null,
+          sumApps1m: 0,
+          sumApps3d: 0,
+          uniqueAddDob: 1,
+          uniqueAddAccount: 1,
+          uniqueAddDoc: 1,
+          diffDaysFapp: 2158,
+          diffDaysLapp: 2060,
+          hasApp: 1,
+          wasDpd10LastYear: null,
+          wasDpd10Last3Months: null,
+          uniqueAddDocType: null,
+          uniqueAddDobYear: 1,
+          uniqueAddBank: null,
+          uniqueAddEmail: 1,
+          uniqueAddGuarantor: 1,
+          uniqueAddType: 1,
+          uniqueAddChannel: null,
+          wasDpd10Ever: 1,
+          suspiciousFlag: 0,
+          indexCredibility: 4,
+          getLoanLast3Month: 0,
+          getLoanLastMonth: 0,
+          getLoanLastYear: 0,
+          uniqueAddAcquisitionChannels: 1,
+          uniqueAddDocTypes: 1,
+          uniqueAddWallet: 0,
+          wasDpd10LastMonth: null,
+          wasDpd30Ever: 1,
+          wasDpd30Last3Months: null,
+          wasDpd30LastMonth: null,
+          wasDpd30LastYear: null,
+          wasDpd90Ever: 0,
+          wasDpd90Last3Months: null,
+          wasDpd90LastMonth: null,
+          wasDpd90LastYear: null
+        },
+        email: null,
+        phoneAsWallet: null,
+        phoneAsGuarantor: null
       }
     };
 
-    const checkboxes = ["full", "pt", "telco"];
+    const updateJSON = () => {
+      const result = { ...base, productIds: [], response: {} };
 
-    function updateJSON() {
-      const output = JSON.parse(JSON.stringify(baseJson));
-      output.productIds = [];
-
-      if (document.getElementById("full").checked) {
-        output.response.FULL = sections.FULL;
-        output.productIds.push("FULL");
-      }
-      if (document.getElementById("pt").checked) {
-        output.response.PT = sections.PT;
-        output.productIds.push("PT");
-      }
-      if (document.getElementById("telco").checked) {
-        output.response.TELCO = sections.TELCO;
-        output.productIds.push("TELCO");
+      for (const id of ["FR", "PT", "TS", "SB", "CHA"]) {
+        if (document.getElementById(id).checked) {
+          result.productIds.push(id);
+          result.response[id] = sections[id];
+        }
       }
 
-      document.getElementById("json-output").textContent = JSON.stringify(output, null, 2);
+      document.getElementById("output").textContent = JSON.stringify(result, null, 2);
+    };
+
+    // Attach listeners
+    for (const id of ["FR", "PT", "TS", "SB", "CHA"]) {
+      document.getElementById(id).addEventListener("change", updateJSON);
     }
 
-    checkboxes.forEach(id => {
-      document.getElementById(id).addEventListener("change", updateJSON);
-    });
-
+    // Initial render
     updateJSON();
   </script>
 </body>
