@@ -73,32 +73,32 @@
             loanInfoRepaymentFrequency: 1,
             loanInfoRepaymentHistory: "00000",
             loanInfoCloseDate: "2023-12-28",
-            contributorId: "12d3ae45-678d-9ae1-2345-6e789e3xx000" ,
-            "loanInfoRepaymentFullHistory": [
+            contributorId: "12d3ae45-678d-9ae1-2345-6e789e3xx000",
+            loanInfoRepaymentFullHistory: [
               {
-                "dueDate": "15-03-2024",
-                "paymentDate": "15-03-2024",
-                "paymentAmount": 1300.00
+                dueDate: "15-03-2024",
+                paymentDate: "15-03-2024",
+                paymentAmount: 1300.00
               },
               {
-                "dueDate": "15-04-2024",
-                "paymentDate": "15-04-2024",
-                "paymentAmount": 1250.50
+                dueDate: "15-04-2024",
+                paymentDate: "15-04-2024",
+                paymentAmount: 1250.50
               },
               {
-                "dueDate": "15-05-2024",
-                "paymentDate": "15-05-2024",
-                "paymentAmount": 1275.75
+                dueDate: "15-05-2024",
+                paymentDate: "15-05-2024",
+                paymentAmount: 1275.75
               },
               {
-                "dueDate": "15-06-2024",
-                "paymentDate": "15-06-2024",
-                "paymentAmount": 1320.25
+                dueDate: "15-06-2024",
+                paymentDate: "15-06-2024",
+                paymentAmount: 1320.25
               },
               {
-                "dueDate": "15-07-2024",
-                "paymentDate": "15-07-2024",
-                "paymentAmount": 1295.00
+                dueDate: "15-07-2024",
+                paymentDate: "15-07-2024",
+                paymentAmount: 1295.00
               }
             ]
           }
@@ -209,12 +209,10 @@
       document.getElementById("output").textContent = JSON.stringify(result, null, 2);
     };
 
-    // Attach listeners
     for (const id of ["FR", "PT", "TS", "SB", "CHA"]) {
       document.getElementById(id).addEventListener("change", updateJSON);
     }
 
-    // Initial render
     updateJSON();
   </script>
 </body>
