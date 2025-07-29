@@ -31,7 +31,7 @@
     <label><input type="checkbox" id="FR" checked> Full Response (FR)</label>
     <label><input type="checkbox" id="PT" checked> Payment Transaction Data (PT)</label>
     <label><input type="checkbox" id="TS" checked> Telco Score and Loan Application Check (TS)</label>
-    <label><input type="checkbox" id="SB" checked> Summary Block (SB)</label>
+    <label><input type="checkbox" id="LR" checked> LenderLink Lite (LR)</label>
     <label><input type="checkbox" id="CHA" checked> Credit History Aggregated (CHA)</label>
   </div>
 
@@ -107,7 +107,7 @@
           ]
         }
       },
-      SB: {
+      LR: {
         msisdn: "63XXXXXXXXXX",
         numApp: 1,
         numAcc: 1,
@@ -172,7 +172,7 @@
     const updateJSON = () => {
       const result = { ...base, productIds: [], response: {} };
 
-      for (const id of ["FR", "PT", "TS", "SB", "CHA"]) {
+      for (const id of ["FR", "PT", "TS", "LR", "CHA"]) {
         if (document.getElementById(id).checked) {
           result.productIds.push(id);
           result.response[id] = sections[id];
@@ -182,7 +182,7 @@
       document.getElementById("output").textContent = JSON.stringify(result, null, 2);
     };
 
-    for (const id of ["FR", "PT", "TS", "SB", "CHA"]) {
+    for (const id of ["FR", "PT", "TS", "LR", "CHA"]) {
       document.getElementById(id).addEventListener("change", updateJSON);
     }
 
