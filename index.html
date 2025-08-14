@@ -54,8 +54,8 @@
     .slider:before {
       position: absolute;
       content: "";
-      height: 14px;  /* reduced from 22px */
-      width: 14px;   /* reduced from 22px */
+      height: 14px;
+      width: 14px;
       left: 3px;
       bottom: 3px;
       background-color: white;
@@ -66,7 +66,7 @@
       background-color: #2196F3;
     }
     input:checked + .slider:before {
-      transform: translateX(20px); /* adjusted to new width */
+      transform: translateX(20px);
     }
     pre {
       background-color: #f5f5f5;
@@ -154,6 +154,8 @@
           wasDpd90LastYear: 0
         }
       },
+
+      /* PT replaced per your sample; matchKey toggled by the switch */
       PT: {
         transactionCount: 4,
         minAmount: 1985,
@@ -189,10 +191,246 @@
         ],
         matchKey: "cellphoneNumber"
       },
-      TS: { transactionId: "f2279c3df6eb4368a8ec31c0ca561c8a", code: "0000", result: "ok" },
-      LR: { msisdn: "63XXXXXXXXXX" },
-      CHA: { document: null },
-      LAC: { result: "ok" }
+
+      /* RESTORED: full TS section */
+      TS: {
+        transactionId: "f2279c3df6eb4368a8ec31c0ca561c8a",
+        code: "0000",
+        result: "ok",
+        scores: {
+          G: [
+            ["score", 337],
+            ["band", 1]
+          ]
+        }
+      },
+
+      /* RESTORED: LR as in your original */
+      LR: {
+        msisdn: "63XXXXXXXXXX",
+        numApp: 1,
+        numAcc: 1,
+        wasDpd30Ever: 1,
+        wasDpd90Ever: 0,
+        wasDpd30Last3Months: 0,
+        wasDpd90Last3Months: 0,
+        wasDpd30LastYear: 0,
+        wasDpd90LastYear: 0
+      },
+
+      /* RESTORED: full CHA section */
+      CHA: {
+        document: null,
+        phone: {
+          wasAgr: 1,
+          dpd30Ntb: 0,
+          dpd90Ntb: 0,
+          mmDocByPhone: null,
+          mmAccByPhone: null,
+          mmBdByPhone: null,
+          sumApps1m: 0,
+          sumApps3d: 0,
+          uniqueAddDob: 1,
+          uniqueAddAccount: 1,
+          uniqueAddDoc: 1,
+          diffDaysFapp: 2158,
+          diffDaysLapp: 2060,
+          hasApp: 1,
+          wasDpd10LastYear: null,
+          wasDpd10Last3Months: null,
+          uniqueAddDocType: null,
+          uniqueAddDobYear: 1,
+          uniqueAddBank: null,
+          uniqueAddEmail: 1,
+          uniqueAddGuarantor: 1,
+          uniqueAddType: 1,
+          uniqueAddChannel: null,
+          wasDpd10Ever: 1,
+          suspiciousFlag: 0,
+          indexCredibility: 4,
+          getLoanLast3Month: 0,
+          getLoanLastMonth: 0,
+          getLoanLastYear: 0,
+          uniqueAddAcquisitionChannels: 1,
+          uniqueAddDocTypes: 1,
+          uniqueAddWallet: 0,
+          wasDpd10LastMonth: null,
+          wasDpd30Ever: 1,
+          wasDpd30Last3Months: null,
+          wasDpd30LastMonth: null,
+          wasDpd30LastYear: null,
+          wasDpd90Ever: 0,
+          wasDpd90Last3Months: null,
+          wasDpd90LastMonth: null,
+          wasDpd90LastYear: null
+        },
+        email: null,
+        phoneAsWallet: null,
+        phoneAsGuarantor: null
+      },
+
+      /* RESTORED: full LAC section */
+      LAC: {
+        result: "ok",
+        code: "0000",
+        transactionId: "c14432247a694546bdd11abf156c2161",
+        scores: {
+          CVSCR2: {
+            cvScore: {
+              score: 501,
+              band: 3
+            },
+            cvTotals: {
+              reqTotal1: 0,
+              unqEntities1: 0,
+              reqOthers1: 0,
+              reqBnpl1: 0,
+              reqPos1: 0,
+              reqDigiLoan1: 0,
+              reqDigiBank1: 0,
+              reqCashLoan1: 0,
+              reqAuto1: 0,
+              reqBank1: 0,
+              reqDigiBnpl1: 0,
+              reqTotal7: 0,
+              unqEntities7: 0,
+              reqOthers7: 0,
+              reqBnpl7: 0,
+              reqPos7: 0,
+              reqDigiLoan7: 0,
+              reqDigiBank7: 0,
+              reqCashLoan7: 0,
+              reqAuto7: 0,
+              reqBank7: 0,
+              reqDigiBnpl7: 0,
+              reqTotal14: 0,
+              unqEntities14: 0,
+              reqOthers14: 0,
+              reqBnpl14: 0,
+              reqPos14: 0,
+              reqDigiLoan14: 0,
+              reqDigiBank14: 0,
+              reqCashLoan14: 0,
+              reqAuto14: 0,
+              reqBank14: 0,
+              reqDigiBnpl14: 0,
+              reqTotal21: 0,
+              unqEntities21: 0,
+              reqOthers21: 0,
+              reqBnpl21: 0,
+              reqPos21: 0,
+              reqDigiLoan21: 0,
+              reqDigiBank21: 0,
+              reqCashLoan21: 0,
+              reqAuto21: 0,
+              reqBank21: 0,
+              reqDigiBnpl21: 0,
+              reqTotal28: 0,
+              unqEntities28: 0,
+              reqOthers28: 0,
+              reqBnpl28: 0,
+              reqPos28: 0,
+              reqDigiLoan28: 0,
+              reqDigiBank28: 0,
+              reqCashLoan28: 0,
+              reqAuto28: 0,
+              reqBank28: 0,
+              reqDigiBnpl28: 0,
+              reqTotal35: 0,
+              unqEntities35: 0,
+              reqOthers35: 0,
+              reqBnpl35: 0,
+              reqPos35: 0,
+              reqDigiLoan35: 0,
+              reqDigiBank35: 0,
+              reqCashLoan35: 0,
+              reqAuto35: 0,
+              reqBank35: 0,
+              reqDigiBnpl35: 0,
+              reqTotal45: 0,
+              unqEntities45: 0,
+              reqOthers45: 0,
+              reqBnpl45: 0,
+              reqPos45: 0,
+              reqDigiLoan45: 0,
+              reqDigiBank45: 0,
+              reqCashLoan45: 0,
+              reqAuto45: 0,
+              reqBank45: 0,
+              reqDigiBnpl45: 0,
+              reqTotal60: 0,
+              unqEntities60: 0,
+              reqOthers60: 0,
+              reqBnpl60: 0,
+              reqPos60: 0,
+              reqDigiLoan60: 0,
+              reqDigiBank60: 0,
+              reqCashLoan60: 0,
+              reqAuto60: 0,
+              reqBank60: 0,
+              reqDigiBnpl60: 0,
+              reqTotal90: 0,
+              unqEntities90: 0,
+              reqOthers90: 0,
+              reqBnpl90: 0,
+              reqPos90: 0,
+              reqDigiLoan90: 0,
+              reqDigiBank90: 0,
+              reqCashLoan90: 0,
+              reqAuto90: 0,
+              reqBank90: 0,
+              reqDigiBnpl90: 0,
+              reqTotal180: 0,
+              unqEntities180: 0,
+              reqOthers180: 0,
+              reqBnpl180: 0,
+              reqPos180: 0,
+              reqDigiLoan180: 0,
+              reqDigiBank180: 0,
+              reqCashLoan180: 0,
+              reqAuto180: 0,
+              reqBank180: 0,
+              reqDigiBnpl180: 0,
+              reqTotal360: 0,
+              unqEntities360: 0,
+              reqOthers360: 0,
+              reqBnpl360: 0,
+              reqPos360: 0,
+              reqDigiLoan360: 0,
+              reqDigiBank360: 0,
+              reqCashLoan360: 0,
+              reqAuto360: 0,
+              reqBank360: 0,
+              reqDigiBnpl360: 0,
+              reqTotal540: 0,
+              unqEntities540: 0,
+              reqOthers540: 0,
+              reqBnpl540: 0,
+              reqPos540: 0,
+              reqDigiLoan540: 0,
+              reqDigiBank540: 0,
+              reqCashLoan540: 0,
+              reqAuto540: 0,
+              reqBank540: 0,
+              reqDigiBnpl540: 0,
+              reqTotal720: 1,
+              unqEntities720: 1,
+              reqOthers720: 1,
+              reqBnpl720: 0,
+              reqPos720: 0,
+              reqDigiLoan720: 1,
+              reqDigiBank720: 0,
+              reqCashLoan720: 0,
+              reqAuto720: 0,
+              reqBank720: 0,
+              reqDigiBnpl720: 0,
+              reqTotalAll: 33,
+              unqEntitiesTotalAll: 6,
+              reqOthersTotalAll: 33
+            }
+          }
+        }
+      }
     };
 
     const updateJSON = () => {
